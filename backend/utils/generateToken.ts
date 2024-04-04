@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Response } from "express";
 import config from '../config/config';
+import { Types } from 'mongoose';
 
-const generateTokenAndSetCookie = (userId: string, res: Response) => {
+const generateTokenAndSetCookie = (userId: Types.ObjectId, res: Response) => {
 
     const JWT_SECRET = config.JWT_SECRET;
 

@@ -44,13 +44,13 @@ export const signup = async (req: Request, res: Response) => {
         }
 
         // generate jwt token
-        generateTokenAndSetCookie(newUser.id, res);
+        generateTokenAndSetCookie(newUser._id, res);
 
         // save the user to the db
         await newUser.save();
 
         res.status(201).json({
-            _id: newUser.id,
+            _id: newUser._id,
            fullName: newUser.fullName,
            username: newUser.username,
            profilePic: newUser.profilePic,
@@ -62,8 +62,37 @@ export const signup = async (req: Request, res: Response) => {
     }
 }
 
-export const login = (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
     console.log('Login')
+    try {
+        const {username, password} = req.body as IUser;
+
+        const user = await User.findOne({username});
+
+        if(!user) {
+            return res.status(400).json({error: 'Invalid username or password'}); 
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+        if(!isPasswordCorrect) {
+            return res.status(400).json({error: 'Invalid username or password'}); 
+        }
+
+        generateTokenAndSetCookie(user._id, res);
+
+        res.status(201).json({
+            _id: user._id,
+           fullName: user.fullName,
+           username: user.username,
+           profilePic: user.profilePic,
+        });
+
+
+    } catch (error) {
+        console.log('Error in login controller', JSON.stringify(error));
+        res.status(500).json({error: 'Internal Server Error'});
+    }
 }
 
 export const logout = (req: Request, res: Response) => {
