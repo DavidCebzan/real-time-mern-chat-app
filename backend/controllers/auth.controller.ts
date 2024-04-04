@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {IUser} from '../types/db'
 import User from "../models/user.model";
 import bcrypt from 'bcryptjs';
+import generateTokenAndSetCookie from "../utils/generateToken";
 
 type SignupBody = IUser & {confirmPassword: string}
 
@@ -42,7 +43,8 @@ export const signup = async (req: Request, res: Response) => {
             })
         }
 
-        
+        // generate jwt token
+        generateTokenAndSetCookie(newUser.id, res);
 
         // save the user to the db
         await newUser.save();

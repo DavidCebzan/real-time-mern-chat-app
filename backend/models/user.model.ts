@@ -1,6 +1,6 @@
-import mongoose, {Schema, model} from "mongoose";
+import {Schema, model} from "mongoose";
 import { IUser } from "../types/db";
-// 46:52
+
 const userSchema = new Schema<IUser>({
     fullName: {
         type: String,
