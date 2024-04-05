@@ -1,6 +1,6 @@
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 
-export interface IUser {
+export interface IUser extends mongoose.Document {
     fullName: string,
     username: string,
     password: string,
@@ -10,7 +10,7 @@ export interface IUser {
     updatedAt?: string,
 }
 
-export interface IMessage {
+export interface IMessage extends mongoose.Document {
     senderId: Types.ObjectId,
     recieverId: Types.ObjectId,
     message: string,
@@ -18,7 +18,7 @@ export interface IMessage {
     updatedAt?: string,
 }
 
-export interface IConversation {
+export interface IConversation extends mongoose.Document {
     participants: Types.ObjectId[],
     messages: Types.ObjectId[],
     createdAt?: string,
