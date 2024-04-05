@@ -9,7 +9,7 @@ interface CustomRequest extends Request {
 
 export const sendMessage = async (req: CustomRequest, res: Response) => {
     try {
-        console.log('NESTO', req.params.id);
+        console.log('Send', req.params.id);
         const {message} = req.body as {message: string};
         const {id: recieverId} = req.params as {id: string};
 
@@ -52,6 +52,30 @@ export const sendMessage = async (req: CustomRequest, res: Response) => {
 
     } catch (error) {
         console.log('Error in sendMessage controller', JSON.stringify(error));
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+}
+
+export const getMessages = async (req: CustomRequest, res: Response) => {
+    try {   
+        console.log('Get messages');
+
+        const {id: userToGetMessagesFrom} = req.params as {id: string};
+        const ownId = req.user?._id
+
+        const conversation = await Conversation.findOne({
+            participants:{ $all: [userToGetMessagesFrom, ownId]}
+        }).populate("messages"); // NOT REFERENCE BUT ACTUAL MESSAGES
+
+        if(!conversation) {
+            return res.status(200).json([])
+        }
+
+        const messages = conversation.messages;
+
+        res.status(200).json(messages);   
+    } catch (error) {
+        console.log('Error in getMessages controller', JSON.stringify(error));
         res.status(500).json({error: 'Internal Server Error'});
     }
 }
