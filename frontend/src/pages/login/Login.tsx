@@ -1,7 +1,19 @@
-import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLogin } from '../../hooks/useLogin'
 
 function Login() {
+
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const { loading, login } = useLogin();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        await login(username, password)
+    }
+
     return (
         <div className='flex fle-col min-w-96 mx-auto items-center justify-center'>
 
@@ -11,14 +23,14 @@ function Login() {
                     <span className=' text-indigo-200'> ChatApp</span>
                 </h1>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div>
                         <label className='label p-2'>
                             <span className='text-base label-text'>
                                 Username
                             </span>
                         </label>
-                        <input type='text' placeholder='Enter username' className='w-full input input-bordered h-10'/>
+                        <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Enter username' className='w-full input input-bordered h-10' />
                     </div>
 
                     <div>
@@ -27,7 +39,7 @@ function Login() {
                                 Password
                             </span>
                         </label>
-                        <input type='password' placeholder='Enter password' className='w-full input input-bordered h-10'/>
+                        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter password' className='w-full input input-bordered h-10' />
 
                     </div>
                     <Link to='/signup' className='text-sm text-gray-400 hover:underline hover:text-indigo-200 mt-2 flex px-2'>
@@ -35,13 +47,16 @@ function Login() {
                     </Link>
 
                     <div>
-                        <button className='btn btn-block btn-sm mt-2'>
-                            Login
+                        <button
+                         className='btn btn-block btn-sm mt-2'
+                         disabled={loading}
+                         >
+                         {loading ? <span className='loading loading-spinner'/> : 'Login'}
                         </button>
                     </div>
 
                 </form>
-               
+
             </div>
         </div>
     )

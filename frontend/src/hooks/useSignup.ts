@@ -22,8 +22,6 @@ const useSignup = () => {
 
             const data = await res.json();
 
-            console.log(data);
-
             if(data.error) {
                 throw new Error(data.error);
             }
@@ -33,9 +31,8 @@ const useSignup = () => {
             //cotext
             setAuthUser(data);
 
-
         } catch (error) {
-            toast.error(error as string);
+            toast.error((error as Error).message);
         } finally {
             setLoading(false);
         }
