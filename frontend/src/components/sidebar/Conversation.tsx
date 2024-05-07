@@ -1,5 +1,6 @@
 import { generateAvatarFromName } from '../../utils/generateAvatarFromName'
 import { User } from '../../types/dbTypes'
+import useConversation from '../../zustand/useConversation';
 
 type ConversationProps = {
     user: User,
@@ -8,9 +9,14 @@ type ConversationProps = {
 
 
 function Conversation({user, isLast}: ConversationProps) {
+  const {selectedConversation, setSelectedConversation} = useConversation();
+
+  const isSelected = selectedConversation?._id === user._id;
   return (
     <>
-    <div className='flex gap-2 items-center hover:bg-indigo-300 rounded p-2 py-1 cursor-pointer'>
+    <div 
+    onClick={() => setSelectedConversation(user)}
+    className={`flex gap-2 items-center hover:bg-indigo-400 rounded p-2 py-1 cursor-pointer ${isSelected ? 'bg-indigo-400' : ''}`}>
         <div className='avatar online'>
             <div className='w-12 rounded-full'>
                 <img src={generateAvatarFromName(user.fullName)} />
