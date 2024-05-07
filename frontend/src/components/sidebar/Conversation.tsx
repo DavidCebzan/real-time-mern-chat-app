@@ -1,4 +1,5 @@
 import React from 'react'
+import { generateAvatarFromName } from '../../utils/generateAvatarFromName'
 
 function Conversation() {
   return (
@@ -6,7 +7,7 @@ function Conversation() {
     <div className='flex gap-2 items-center hover:bg-indigo-300 rounded p-2 py-1 cursor-pointer'>
         <div className='avatar online'>
             <div className='w-12 rounded-full'>
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={generateAvatarFromName('John Doe')} />
             </div>
         </div>
 
