@@ -5,3 +5,11 @@ export type User = {
     gender: 'male' | 'female',
     profilePic: string,
 }
+
+export type Message = {
+    senderId: string,
+    recieverId: string,
+    message: string,
+    createdAt?: string,
+    updatedAt?: string,
+}

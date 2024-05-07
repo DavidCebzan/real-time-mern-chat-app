@@ -1,18 +1,18 @@
 import { create } from "zustand";
-import { User } from "../types/dbTypes";
+import { Message, User } from "../types/dbTypes";
 
 type UseConversation = {
     selectedConversation: null | User,
-    setSelectedConversation: (selectedConversation: User) => void,
-    messages: [],
-    setMessages: (messages: []) => void,
+    setSelectedConversation: (selectedConversation: User | null) => void,
+    messages: Message[],
+    setMessages: (messages: Message[]) => void,
 }
 
 const useConversation = create<UseConversation>((set) => ({
     selectedConversation: null,
-    setSelectedConversation: (selectedConversation: User) => set({selectedConversation}),
+    setSelectedConversation: (selectedConversation: User | null) => set({selectedConversation}),
     messages: [],
-    setMessages: (messages: []) => set({messages}),
+    setMessages: (messages: Message[]) => set({messages}),
 }))
 
 export default useConversation;
