@@ -7,6 +7,7 @@ export type User = {
 }
 
 export type Message = {
+    _id: string,
     senderId: string,
     recieverId: string,
     message: string,
