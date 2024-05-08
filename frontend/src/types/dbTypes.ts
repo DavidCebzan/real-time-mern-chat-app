@@ -13,4 +13,5 @@ export type Message = {
     message: string,
     createdAt?: string,
     updatedAt?: string,
+    shouldShake?: boolean,
 }

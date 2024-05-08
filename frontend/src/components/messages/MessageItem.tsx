@@ -22,6 +22,8 @@ function MessageItem({message}: MessageItemProps) {
 
     const bgBubbleColor = ownMessage ? 'bg-indigo-300' : '';
 
+    const shakeClass = message.shouldShake ? 'shake' : '';
+
   return (  
     <div className={`chat ${chatClassname}`}>
         <div className='chat-image avatar'>
@@ -32,7 +34,7 @@ function MessageItem({message}: MessageItemProps) {
 
         </div>
 
-        <div className={`chat-bubble text-white pb-2 ${bgBubbleColor}`}>
+        <div className={`chat-bubble text-white pb-2 ${bgBubbleColor} ${shakeClass}`}>
            {message.message}
         </div>
         <div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>
