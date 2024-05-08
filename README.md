@@ -32,33 +32,36 @@ Before you begin, ensure you have the following installed:
 
    ```bash
    git clone https://github.com/DavidCebzan/real-time-mern-chat-app.git
+
    cd real-time-mern-chat-app
     ```
 2. **Set up the backend:**
     
    Install dependencies in the root folder.
 
- ```bash
+    ```bash
     npm install
-```
+    ```
      
     Start the backend server.
     
- ```bash
+    ```bash
     npm run server
-```
+    ```
+
 3. **Set up the frontend:**
 
 Open another terminal, navigate to the frontend folder from the root directory, and install dependencies.
 
 ```bash
-    cd frontend
-    npm install
+cd frontend
+npm install
 ```
-    Start the React development server.
+
+ Start the React development server.
 
 
 ```bash
-    npm run dev
+npm run dev
 ```
-    Your default web browser will open at http://localhost:3000.
+ Your default web browser will open at http://localhost:3000.
