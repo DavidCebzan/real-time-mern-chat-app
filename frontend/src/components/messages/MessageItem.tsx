@@ -1,4 +1,3 @@
-import React from 'react'
 import { Message } from '../../types/dbTypes'
 import { useAuthContext } from '../../context/AuthContext';
 import useConversation from '../../zustand/useConversation';
@@ -8,7 +7,6 @@ import { extractTime } from '../../utils/extractTime';
 type MessageItemProps = {
     message: Message;
 }
-//3:47
 function MessageItem({message}: MessageItemProps) {
 
     const {authUser} = useAuthContext();

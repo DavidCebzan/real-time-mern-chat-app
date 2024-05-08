@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 type GenderCheckboxProps = {
     onCheckboxChange: (gender: 'male' | 'female') => void,
     selectedGender: string;

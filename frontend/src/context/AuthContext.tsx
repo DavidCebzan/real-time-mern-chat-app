@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { createContext, useContext, useState, JSX, Dispatch, SetStateAction, useEffect } from "react";
+import { createContext, useContext, useState, JSX, Dispatch, SetStateAction, useEffect } from "react";
 
 type AuthContextType = {
     authUser: any;
