@@ -3,11 +3,12 @@ import { Message } from '../../types/dbTypes'
 import { useAuthContext } from '../../context/AuthContext';
 import useConversation from '../../zustand/useConversation';
 import { generateAvatarFromName } from '../../utils/generateAvatarFromName';
+import { extractTime } from '../../utils/extractTime';
 
 type MessageItemProps = {
     message: Message;
 }
-
+//3:47
 function MessageItem({message}: MessageItemProps) {
 
     const {authUser} = useAuthContext();
@@ -31,11 +32,11 @@ function MessageItem({message}: MessageItemProps) {
 
         </div>
 
-        <div className={`chat-bubble text-white bg-indigo-300 ${bgBubbleColor}`}>
+        <div className={`chat-bubble text-white pb-2 ${bgBubbleColor}`}>
            {message.message}
         </div>
         <div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>
-            12:32
+            {extractTime(message.createdAt ?? '')}
         </div>
     </div>
   )
