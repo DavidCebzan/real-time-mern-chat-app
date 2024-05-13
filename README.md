@@ -1,6 +1,6 @@
 # Chat App with MERN Stack
 
-This Chat App is a modern, real-time messaging platform built with the MERN stack (MongoDB, Express.js, React, and Node.js), integrated with JWT (JSON Web Tokens) for authentication, and Socket.io for bi-directional communication between clients and servers. This app allows users to sign up, log in, and chat in various chat rooms or in private messages.
+This Chat App is a modern, real-time messaging platform built with the MERN stack (MongoDB, Express.js, React, and Node.js), integrated with JWT (JSON Web Tokens) for authentication, and Socket.io for bi-directional communication between clients and servers. This app allows users to sign up, log in, and chat in various chats.
 
 ## Features
 
